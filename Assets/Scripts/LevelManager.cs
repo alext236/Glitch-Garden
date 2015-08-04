@@ -8,7 +8,7 @@ public class LevelManager : MonoBehaviour {
     void Start() {
         if (autoLoadNextLevel) {
             Invoke("LoadNextLevel", loadNextLevelAfter);
-        }        
+        }
     }
 
     public void LoadLevel(string name) {
@@ -24,6 +24,4 @@ public class LevelManager : MonoBehaviour {
     public void LoadNextLevel() {
         Application.LoadLevel(Application.loadedLevel + 1);
     }
-
-
 }

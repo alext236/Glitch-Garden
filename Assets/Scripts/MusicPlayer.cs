@@ -3,7 +3,6 @@ using System.Collections;
 
 public class MusicPlayer : MonoBehaviour {
 
-    
     private AudioSource soundTrack;
 
     public AudioClip startMenu;
@@ -22,10 +21,10 @@ public class MusicPlayer : MonoBehaviour {
             if (soundTrack.clip != startMenu) {
                 soundTrack.clip = startMenu;
                 soundTrack.Play();
-            }            
+            }
         }
         else if (level == 2) {  //Options
-            return;
+                        
         }
         else if (level == 3) {  //Main game
             soundTrack.clip = mainGame;
