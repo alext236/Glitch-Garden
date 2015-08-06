@@ -18,8 +18,7 @@ public class FadeIn : MonoBehaviour {
     void Update() {
         if (Time.timeSinceLevelLoad < fadeInTime) {
             //Fade in 
-            float alphaChange = Time.deltaTime / fadeInTime;
-            Debug.Log(alphaChange);
+            float alphaChange = Time.deltaTime / fadeInTime;            
             currentColor.a = currentColor.a - alphaChange;
             fadePanel.color = currentColor;
         }
