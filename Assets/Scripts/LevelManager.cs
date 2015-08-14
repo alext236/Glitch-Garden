@@ -7,7 +7,12 @@ public class LevelManager : MonoBehaviour {
 
     void Start() {
         if (autoLoadNextLevel) {
-            Invoke("LoadNextLevel", loadNextLevelAfter);
+            if (loadNextLevelAfter >= 0) {
+                Invoke("LoadNextLevel", loadNextLevelAfter);
+            } else {
+                Debug.LogError("Load time must be positive");
+            }
+            
         }
     }
 

@@ -27,4 +27,5 @@ public class FadeIn : MonoBehaviour {
 
         }
     }
+    //See Splash Screen for fading using Animation
 }

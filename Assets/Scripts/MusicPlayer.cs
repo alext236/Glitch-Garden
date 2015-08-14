@@ -12,7 +12,7 @@ public class MusicPlayer : MonoBehaviour {
     void Awake() {
         soundTrack = GetComponent<AudioSource>();
         DontDestroyOnLoad(this.gameObject);
-        GetComponent<AudioSource>().volume = PlayerPrefsManager.GetMasterVolume();
+        soundTrack.volume = PlayerPrefsManager.GetMasterVolume();
     }
 
     public void OnLevelWasLoaded(int level) {
