@@ -11,6 +11,9 @@ public class Attacker : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         animator = GetComponent<Animator>();
+
+        Rigidbody2D myRigidBody = gameObject.AddComponent<Rigidbody2D>();
+        myRigidBody.isKinematic = true;
 	}
 	
 	// Update is called once per frame
