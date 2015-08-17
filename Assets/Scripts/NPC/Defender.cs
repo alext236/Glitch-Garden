@@ -3,11 +3,11 @@ using System.Collections;
 
 public class Defender : MonoBehaviour {
 
-    private Animator animator;
+    private Animator anim;
 
 	// Use this for initialization
 	void Start () {
-        animator = GetComponent<Animator>();
+        anim = GetComponent<Animator>();
 	}
 	
 	// Update is called once per frame
@@ -15,11 +15,14 @@ public class Defender : MonoBehaviour {
 	
 	}
 
-    public void OnTriggerEnter2D(Collider2D collision) {
-        Debug.Log(name + " trigger enter");
-        if (collision.GetComponent<Collider2D>().GetComponent<Attacker>()) {
-            Debug.Log(name + " enter trigger with an attacker");
-            animator.SetBool("isAttacked", true);
+    public void OnTriggerEnter2D(Collider2D collision) {        
+        GameObject atk = collision.gameObject;
+        //only recognize entering trigger with attackers
+        if (!atk.GetComponent<Attacker>()) {
+            return;            
         }
+
+        Debug.Log(name + " enter trigger with an attacker");
+        anim.SetBool("isAttacked", true);
     }
 }
