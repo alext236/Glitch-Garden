@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Defender : MonoBehaviour {
+public class Lizard : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
@@ -12,8 +12,4 @@ public class Defender : MonoBehaviour {
 	void Update () {
 	
 	}
-
-    public void OnTriggerEnter2D(Collider2D collision) {
-        Debug.Log(name + " trigger enter");
-    }
 }

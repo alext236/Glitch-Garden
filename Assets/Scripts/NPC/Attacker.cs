@@ -24,8 +24,11 @@ public class Attacker : MonoBehaviour {
         transform.Translate(Vector3.left * Time.deltaTime * currentSpeed, Space.Self);
     }
 
-    public void OnTriggerEnter2D(Collider2D collision) {
-        Debug.Log(name + " trigger enter");
+    public void OnTriggerEnter2D(Collider2D collision) {        
+        if (collision.GetComponent<Collider2D>().GetComponent<Defender>()) {
+            Debug.Log(name + " enter trigger with a defender");
+            StrikeCurrentTarget(5f);
+        }
     }
 
     public void SetCurrentSpeed(float speed) {
@@ -38,5 +41,6 @@ public class Attacker : MonoBehaviour {
 
     public void StrikeCurrentTarget(float damage) {
         Debug.Log("This attacker is attacking with " + damage + " damage");
+        animator.SetBool("isAttacking", true);
     }
 }
