@@ -3,19 +3,23 @@ using System.Collections;
 
 public class Health : MonoBehaviour {
 
-    public float health;    
-
-    // Use this for initialization
-    void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    public float health;
 
     public void TakeDamage(float damage) {
-        health -= damage;
+        if (health >= damage) {
+            health -= damage;
+        }
+        else {
+            health = 0;
+        }
+
+        if (health <= 0) {
+            //Optionally trigger death animation or particles
+            DestroyObject();
+        }
+    }
+
+    public void DestroyObject() {
+        Destroy(gameObject);
     }
 }

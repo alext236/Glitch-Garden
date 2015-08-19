@@ -2,7 +2,7 @@
 using System.Collections;
 
 [RequireComponent(typeof(Rigidbody2D))]
-[RequireComponent (typeof(Health))]
+[RequireComponent(typeof(Health))]
 public class Attacker : MonoBehaviour {
 
     [Range(-1f, 2f)]
@@ -24,28 +24,36 @@ public class Attacker : MonoBehaviour {
     void Update() {
         //Movement is controlled with animation events (by setting speed = 0 when not moving)
         transform.Translate(Vector3.left * Time.deltaTime * currentSpeed, Space.Self);
+
+        //If there is no current target, stop attacking and resume moving
+        if (!currentTarget && anim.GetBool("isAttacking")) {
+            StopAttack();
+        }
     }
 
     public void SetCurrentSpeed(float speed) {
         currentSpeed = speed;
     }
-    
+
     public void ResetOriginalSpeed() {
         currentSpeed = walkSpeed;
     }
 
     //Called from the animator at time of actual blow, using animator events
+    //Currently can only set damage at animator events
     public void StrikeCurrentTarget(float damage) {
-        Debug.Log("This attacker is attacking with " + damage + " damage");
-        Debug.Log("Before: " + currentTarget.GetComponent<Health>().health);
-        currentTarget.GetComponent<Health>().TakeDamage(damage);
-        Debug.Log("After: " + currentTarget.GetComponent<Health>().health);
-        
+        //Current target should exist to be striked
+        if (currentTarget) {
+            Health health = currentTarget.GetComponent<Health>();
+            if (health) {
+                health.TakeDamage(damage);
+            }
+        }
     }
 
     public void Attack(GameObject target) {
         currentTarget = target;
-        anim.SetBool("isAttacking", true);        
+        anim.SetBool("isAttacking", true);
     }
 
     public void StopAttack() {
