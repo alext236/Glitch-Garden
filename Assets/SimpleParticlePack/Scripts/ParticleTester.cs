@@ -18,7 +18,7 @@ public class ParticleTester : MonoBehaviour {
 	
 	private class FlareSystem {
 		public string name;
-		public GameObject particleObject;
+		public UnityEngine.GameObject particleObject;
 		public ParticleSystem[] particleSystems;
 		public bool toggleFlag;
 		public bool savedToggleFlag;
@@ -28,15 +28,15 @@ public class ParticleTester : MonoBehaviour {
 		expBool = flrBool = false;
 		systemType = SystemType.None;
 		savedSystemType = SystemType.None;
-		particleSystems = Resources.LoadAll("Explosions", typeof(GameObject));
-		loadFlareSystems = Resources.LoadAll("Flares", typeof(GameObject));
-		loadDirectionalSystems = Resources.LoadAll("Directional", typeof(GameObject));
+        particleSystems = Resources.LoadAll("Explosions", typeof(UnityEngine.GameObject));
+        loadFlareSystems = Resources.LoadAll("Flares", typeof(UnityEngine.GameObject));
+        loadDirectionalSystems = Resources.LoadAll("Directional", typeof(UnityEngine.GameObject));
 		flareSystems = new List <FlareSystem>();
 		directionalSystems = new List <FlareSystem>();
 		foreach (Object obj in loadFlareSystems) {
 			FlareSystem thisFlareSystem = new FlareSystem ();
 			thisFlareSystem.name = obj.name;
-			thisFlareSystem.particleObject = Instantiate (obj, Vector3.zero, Quaternion.identity) as GameObject;
+			thisFlareSystem.particleObject = Instantiate(obj, Vector3.zero, Quaternion.identity) as UnityEngine.GameObject;
 			thisFlareSystem.particleSystems = thisFlareSystem.particleObject.GetComponentsInChildren<ParticleSystem>();
 #if UNITY_3_4 || UNITY_3_5
 			thisFlareSystem.particleObject.SetActiveRecursively (false);
@@ -50,7 +50,7 @@ public class ParticleTester : MonoBehaviour {
 		foreach (Object obj in loadDirectionalSystems) {
 			FlareSystem thisFlareSystem = new FlareSystem ();
 			thisFlareSystem.name = obj.name;
-			thisFlareSystem.particleObject = Instantiate (obj, Vector3.zero, Quaternion.identity) as GameObject;
+			thisFlareSystem.particleObject = Instantiate(obj, Vector3.zero, Quaternion.identity) as UnityEngine.GameObject;
 			thisFlareSystem.particleSystems = thisFlareSystem.particleObject.GetComponentsInChildren<ParticleSystem>();
 #if UNITY_3_4 || UNITY_3_5
 			thisFlareSystem.particleObject.SetActiveRecursively (false);
@@ -82,10 +82,10 @@ public class ParticleTester : MonoBehaviour {
 		scrollPosition = GUILayout.BeginScrollView (scrollPosition, GUILayout.Width (250), GUILayout.Height (550));
 		switch (systemType) {
 			case SystemType.Explosions:
-				foreach (GameObject ps in particleSystems) {
+				foreach (UnityEngine.GameObject ps in particleSystems) {
 					if (GUILayout.Button (ps.name)) {
-						GameObject go = Instantiate (ps, Vector3.zero, Quaternion.identity) as GameObject;
-						Destroy (go, 10);
+                        UnityEngine.GameObject go = Instantiate(ps, Vector3.zero, Quaternion.identity) as UnityEngine.GameObject;
+                        Destroy(go, 10);
 					}
 				}
 			break;
