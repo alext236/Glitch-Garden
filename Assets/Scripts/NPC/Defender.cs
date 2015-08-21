@@ -4,7 +4,9 @@ using System.Collections;
 public class Defender : MonoBehaviour {
 
     private Animator anim;
-    private Health healthComp;    
+    private Health healthComp;
+
+    private Attacker currentAttacker;
 
     // Use this for initialization
     void Start() {
@@ -14,6 +16,9 @@ public class Defender : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
+        if (!currentAttacker) {
+            anim.SetBool("isAttacked", false);
+        }
     }
 
     public void OnTriggerEnter2D(Collider2D collision) {
@@ -22,7 +27,7 @@ public class Defender : MonoBehaviour {
         if (!atk.GetComponent<Attacker>()) {
             return;
         }
-        
+        currentAttacker = atk.GetComponent<Attacker>();
         Debug.Log(name + " enter trigger with an attacker");
         anim.SetBool("isAttacked", true);
     }
