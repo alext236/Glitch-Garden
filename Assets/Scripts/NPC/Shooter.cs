@@ -19,7 +19,8 @@ public class Shooter : MonoBehaviour {
 
     //For now, Edit how frequent the attacker fires in the animator transition exit time
     void Fire() {
-        GameObject proj = Instantiate(projectile, transform.GetChild(1).transform.position, Quaternion.identity) as GameObject;
-        proj.transform.SetParent(projectileParent.transform);
+        Vector3 gunPosition = transform.FindChild("Gun").transform.position;
+        GameObject newProjectile = Instantiate(projectile, gunPosition, Quaternion.identity) as GameObject;
+        newProjectile.transform.SetParent(projectileParent.transform);
     }
 }

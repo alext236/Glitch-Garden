@@ -23,6 +23,7 @@ public class Projectile : MonoBehaviour {
         }
         Attacker attacker = collision.gameObject.GetComponent<Attacker>();
         attacker.BeingStriked(damage);
-        Debug.Log(name + " hit an attacker with " + damage + " damage");
+        //spawn particle or play effects here
+        Destroy(gameObject);
     }
 }
