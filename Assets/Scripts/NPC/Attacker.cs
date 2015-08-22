@@ -59,4 +59,8 @@ public class Attacker : MonoBehaviour {
     public void StopAttack() {
         anim.SetBool("isAttacking", false);
     }
+
+    public void BeingStriked(float damage) {
+        healthComp.TakeDamage(damage);
+    }
 }
