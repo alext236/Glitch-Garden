@@ -18,6 +18,7 @@ public class Shooter : MonoBehaviour {
 	}
 
     //For now, Edit how frequent the attacker fires in the animator transition exit time
+    //Find a way to make fire rate adjustable using script instead of animator
     void Fire() {
         Vector3 gunPosition = transform.FindChild("Gun").transform.position;
         GameObject newProjectile = Instantiate(projectile, gunPosition, Quaternion.identity) as GameObject;

@@ -41,6 +41,7 @@ public class Attacker : MonoBehaviour {
 
     //Called from the animator at time of actual blow, using animator events
     //Currently can only set damage at animator events
+    //Find a way to adjust damage from editor
     public void StrikeCurrentTarget(float damage) {
         //Current target should exist to be striked
         if (currentTarget) {
