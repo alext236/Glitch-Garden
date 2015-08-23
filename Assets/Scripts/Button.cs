@@ -19,16 +19,14 @@ public class Button : MonoBehaviour {
 
     }
 
-    public void OnMouseDown() {        
-        Debug.Log(name + " is clicked");       
+    public void OnMouseDown() {                
         //Set all buttons to black before changing the selected button to white
         foreach (Button thisButton in buttonArray) {
             thisButton.GetComponent<SpriteRenderer>().color = Color.black;
         }
 
         GetComponent<SpriteRenderer>().color = Color.white;
-        selectedDefender = defenderPrefab;
-        Debug.Log(selectedDefender);
+        selectedDefender = defenderPrefab;        
         //Selected Defender is static so we can Instantiate the chosen prefab when we want, using Button.selectedDefender
     }
 }
