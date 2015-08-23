@@ -3,13 +3,32 @@ using System.Collections;
 
 public class Button : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    private Button[] buttonArray;
+
+    public GameObject defenderPrefab;
+    public static GameObject selectedDefender;
+
+    // Use this for initialization
+    void Start() {
+        GetComponent<SpriteRenderer>().color = Color.black;
+        buttonArray = FindObjectsOfType<Button>();
+    }
+
+    // Update is called once per frame
+    void Update() {
+
+    }
+
+    public void OnMouseDown() {        
+        Debug.Log(name + " is clicked");       
+        //Set all buttons to black before changing the selected button to white
+        foreach (Button thisButton in buttonArray) {
+            thisButton.GetComponent<SpriteRenderer>().color = Color.black;
+        }
+
+        GetComponent<SpriteRenderer>().color = Color.white;
+        selectedDefender = defenderPrefab;
+        Debug.Log(selectedDefender);
+        //Selected Defender is static so we can Instantiate the chosen prefab when we want, using Button.selectedDefender
+    }
 }

@@ -19,6 +19,7 @@ public class Defender : MonoBehaviour {
         if (!currentAttacker) {
             anim.SetBool("isAttacked", false);
         }
+        
     }
 
     public void OnTriggerEnter2D(Collider2D collision) {
@@ -27,8 +28,7 @@ public class Defender : MonoBehaviour {
         if (!atk.GetComponent<Attacker>()) {
             return;
         }
-        currentAttacker = atk.GetComponent<Attacker>();
-        Debug.Log(name + " enter trigger with an attacker");
+        currentAttacker = atk.GetComponent<Attacker>();        
         anim.SetBool("isAttacked", true);
     }
 }

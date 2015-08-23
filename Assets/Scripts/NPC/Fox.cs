@@ -26,11 +26,9 @@ public class Fox : MonoBehaviour {
         }
 
         //Fox jumps if it meets a gravestone, else attacks
-        if (target.GetComponent<Gravestone>()) {
-            Debug.Log(name + " enter trigger with a gravestone");            
+        if (target.GetComponent<Gravestone>()) {                        
             anim.SetTrigger("jumpTrigger");
-        } else {
-            Debug.Log(name + " enter trigger with a defender");
+        } else {            
             attacker.Attack(target);
         }        
     }

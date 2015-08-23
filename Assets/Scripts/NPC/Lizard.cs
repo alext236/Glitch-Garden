@@ -23,9 +23,7 @@ public class Lizard : MonoBehaviour {
 
         if (!target.GetComponent<Defender>()) {
             return;
-        }
-
-        Debug.Log(name + " enter trigger with a defender");
+        }        
         attacker.Attack(target);
 
     }

@@ -1,0 +1,28 @@
+﻿using UnityEngine;
+using System.Collections;
+
+public class Button : MonoBehaviour {
+
+    
+
+    // Use this for initialization
+    void Start() {
+       GetComponent<SpriteRenderer>().color = Color.black;
+
+    }
+
+    // Update is called once per frame
+    void Update() {
+
+    }
+
+    public void OnMouseDown() {
+        Color currentColor = GetComponent<SpriteRenderer>().color;
+        if (currentColor == Color.black) {
+            currentColor = Color.white;
+        } else {
+            currentColor = Color.black;
+        }
+        
+    }
+}
