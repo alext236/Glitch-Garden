@@ -14,6 +14,16 @@ public class Attacker : MonoBehaviour {
     private Animator anim;
     private Health healthComp;
 
+    public GameObject CurrentTarget {
+        get {
+            return currentTarget;
+        }
+
+        set {
+            currentTarget = value;
+        }
+    }
+
     // Use this for initialization
     void Start() {
         anim = GetComponent<Animator>();
@@ -64,4 +74,15 @@ public class Attacker : MonoBehaviour {
     public void BeingStriked(float damage) {
         healthComp.TakeDamage(damage);
     }
+
+    public bool AttackerPassDefender(GameObject def) {
+        //If attacker already passes the defender position, defender can't stop attacker
+        //even if they are still in trigger region
+        if (def.transform.position.x > transform.position.x) {
+            return true;            
+        }
+
+        return false;
+    }
+
 }

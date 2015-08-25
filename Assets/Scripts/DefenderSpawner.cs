@@ -30,7 +30,20 @@ public class DefenderSpawner : MonoBehaviour {
         spawnPos.y = Mathf.RoundToInt(spawnPos.y);
         spawnPos.z = 0f;
 
-        GameObject newDefender = Instantiate(Button.selectedDefender, spawnPos, Quaternion.identity) as GameObject;
-        newDefender.transform.SetParent(transform);
+        if (IsPositionFree(spawnPos)) {
+            GameObject newDefender = Instantiate(Button.selectedDefender, spawnPos, Quaternion.identity) as GameObject;
+            newDefender.transform.SetParent(transform);
+        }        
+    }
+
+    private bool IsPositionFree(Vector3 position) {
+        Defender[] existingDefenders = FindObjectsOfType<Defender>();
+        foreach (Defender def in existingDefenders) {
+            if (def.transform.position == position) {
+                return false;
+            }
+        }
+
+        return true;
     }
 }

@@ -23,12 +23,19 @@ public class Defender : MonoBehaviour {
     }
 
     public void OnTriggerEnter2D(Collider2D collision) {
-        GameObject atk = collision.gameObject;
+        GameObject atk = collision.gameObject;        
+        currentAttacker = atk.GetComponent<Attacker>();
+
         //only recognize entering trigger with attackers
-        if (!atk.GetComponent<Attacker>()) {
+        if (!currentAttacker) {
             return;
         }
-        currentAttacker = atk.GetComponent<Attacker>();        
-        anim.SetBool("isAttacked", true);
+        //If attacker already passes the defender position, defender can't stop attacker
+        //even if they are still in trigger region
+        if (currentAttacker.transform.position.x > transform.position.x) {
+            anim.SetBool("isAttacked", true);
+        }       
+
+        
     }
 }

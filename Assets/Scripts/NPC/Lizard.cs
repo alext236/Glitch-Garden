@@ -19,10 +19,15 @@ public class Lizard : MonoBehaviour {
 
     public void OnTriggerEnter2D(Collider2D collision) {
         GameObject target = collision.gameObject;
-
+        
         if (!target.GetComponent<Defender>()) {
             return;
-        }        
+        }
+
+        if (attacker.AttackerPassDefender(target)) {            
+            return;
+        }
+
         attacker.Attack(target);
 
     }
