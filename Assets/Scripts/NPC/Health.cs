@@ -21,5 +21,6 @@ public class Health : MonoBehaviour {
 
     public void DestroyObject() {
         Destroy(gameObject);
+
     }
 }
