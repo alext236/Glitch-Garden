@@ -26,15 +26,13 @@ public class Defender : MonoBehaviour {
         if (!collision.GetComponent<Attacker>()) {
             return;
         }
-        currentAttacker = collision.gameObject;                
-        
+        currentAttacker = collision.gameObject;
+
         //If attacker already passes the defender position, defender can't stop attacker
         //even if they are still in trigger region
         if (currentAttacker.transform.position.x > transform.position.x) {
             anim.SetBool("isAttacked", true);
         }
-        
-        
     }
 
     public void NoLongerAttacked() {

@@ -12,17 +12,7 @@ public class Attacker : MonoBehaviour {
     private GameObject currentTarget;
 
     private Animator anim;
-    private Health healthComp;
-
-    public GameObject CurrentTarget {
-        get {
-            return currentTarget;
-        }
-
-        set {
-            currentTarget = value;
-        }
-    }
+    private Health healthComp;    
 
     // Use this for initialization
     void Start() {
