@@ -7,6 +7,8 @@ public class Attacker : MonoBehaviour {
 
     [Range(-1f, 2f)]
     public float walkSpeed;
+    [Tooltip ("Average number of seconds between appearance")]
+    public float appearEverySecond;
 
     private float currentSpeed;
     private GameObject currentTarget;

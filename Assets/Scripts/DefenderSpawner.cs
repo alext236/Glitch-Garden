@@ -32,8 +32,7 @@ public class DefenderSpawner : MonoBehaviour {
 
     private Vector3 GetSpawnPosOnMouseClick() {
         //Spawn position is the position of the mouse click, rounded to nearest int, in world space unit
-        Vector3 spawnPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Debug.Log(spawnPos);
+        Vector3 spawnPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);        
 
         spawnPos.x = Mathf.RoundToInt(spawnPos.x);
         spawnPos.y = Mathf.RoundToInt(spawnPos.y);

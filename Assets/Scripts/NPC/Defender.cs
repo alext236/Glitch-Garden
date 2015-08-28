@@ -12,10 +12,18 @@ public class Defender : MonoBehaviour {
     void Start() {
         anim = GetComponent<Animator>();
         healthComp = GetComponent<Health>();
+
+        if (IsThereAttackerOnSameLane() == true) {
+            AttackMode(true);
+        }
     }
 
     // Update is called once per frame
     void Update() {
+        if (!IsThereAttackerOnSameLane()) {
+            AttackMode(false);
+        }
+
         if (!currentAttacker && anim.GetBool("isAttacked") == true) {
             NoLongerAttacked();
         }
@@ -37,5 +45,29 @@ public class Defender : MonoBehaviour {
 
     public void NoLongerAttacked() {
         anim.SetBool("isAttacked", false);
+    }
+
+    public void AttackMode(bool turnOn) {
+        foreach (AnimatorControllerParameter para in anim.parameters) {
+            if (para.name == "isAttacking") {
+                if (turnOn) {
+                    anim.SetBool("isAttacking", true);
+                }
+                else {
+                    anim.SetBool("isAttacking", false);
+                }
+            }
+        }
+    }
+
+    bool IsThereAttackerOnSameLane() {
+        //Change so that it only return true when attacker is visible
+        foreach (Attacker attacker in FindObjectsOfType<Attacker>()) {
+            if (transform.position.y == attacker.transform.position.y) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }
