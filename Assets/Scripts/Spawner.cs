@@ -36,16 +36,6 @@ public class Spawner : MonoBehaviour {
 
     void Spawn(GameObject attacker) {
         GameObject newAttacker = Instantiate(attacker, transform.position, Quaternion.identity) as GameObject;
-        newAttacker.transform.SetParent(transform);
-
-        foreach (Defender defender in FindObjectsOfType<Defender>()) {
-            if (transform.childCount <= 0) {
-                return;
-            }
-            if (defender.transform.position.y == transform.position.y) {
-                defender.AttackMode(true);
-                Debug.Log(defender.name + " starts to attack");
-            }
-        }
+        newAttacker.transform.SetParent(transform);        
     }
 }
