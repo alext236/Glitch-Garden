@@ -26,7 +26,8 @@ public class Shooter : MonoBehaviour {
     void Update() {
         if (!IsThereAttackerOnSameLane()) {
             AttackMode(false);
-        } else {
+        }
+        else {
             AttackMode(true);
         }
     }
@@ -42,9 +43,21 @@ public class Shooter : MonoBehaviour {
     bool IsThereAttackerOnSameLane() {
         //Check if there is attackers on same lane and are ahead the defenders
         //Change so that it only return true when attacker is visible, spawn the attackers one unit off screen width?
-        foreach (Attacker attacker in FindObjectsOfType<Attacker>()) {
-            bool isOnSameLane = (transform.position.y == attacker.transform.position.y);
-            bool isAhead = (transform.position.x <= attacker.transform.position.x);
+        foreach (Spawner spawner in FindObjectsOfType<Spawner>()) {
+            bool isOnSameLane = false;
+            bool isAhead = false;
+            if (spawner.transform.position.y == transform.position.y) {
+                //there is an attacker if spawner on same lane has a child
+                isOnSameLane = (spawner.transform.childCount > 0);
+            }
+            //check if attacker is ahead of defender
+            foreach (Transform child in spawner.transform) {
+                isAhead = (transform.position.x <= child.transform.position.x);
+            }
+
+            if (!isOnSameLane) {
+                Debug.LogWarning("No spawner found in a lane");
+            }            
 
             if (isOnSameLane && isAhead) {
                 return true;
