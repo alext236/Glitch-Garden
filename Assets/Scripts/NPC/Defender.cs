@@ -3,15 +3,13 @@ using System.Collections;
 
 public class Defender : MonoBehaviour {
 
-    private Animator anim;
-    private Health healthComp;
+    private Animator anim;   
 
     private GameObject currentAttacker;
 
     // Use this for initialization
     void Start() {
-        anim = GetComponent<Animator>();
-        healthComp = GetComponent<Health>();
+        anim = GetComponent<Animator>();       
 
     }
 

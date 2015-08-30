@@ -7,6 +7,10 @@ public class DefenderSpawner : MonoBehaviour {
 
     // Use this for initialization
     void Start() {
+        CreateParentFolder();
+    }
+
+    private void CreateParentFolder() {
         defenderParent = GameObject.Find("Defender");
         if (defenderParent == null) {
             defenderParent = new GameObject("Defender");

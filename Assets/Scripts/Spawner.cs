@@ -9,8 +9,7 @@ public class Spawner : MonoBehaviour {
 	void Update () {
         foreach (GameObject attacker in attackerPrefabArray) {
             if (IsTimeToSpawn(attacker)) {
-                Spawn(attacker);
-                Debug.Log(attacker.name + " spawned");
+                Spawn(attacker);                
             }
         }
 	

@@ -55,10 +55,6 @@ public class Shooter : MonoBehaviour {
                 isAhead = (transform.position.x <= child.transform.position.x);
             }
 
-            if (!isOnSameLane) {
-                Debug.LogWarning("No spawner found in a lane");
-            }            
-
             if (isOnSameLane && isAhead) {
                 return true;
             }
