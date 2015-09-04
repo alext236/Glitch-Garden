@@ -3,8 +3,9 @@ using System.Collections;
 
 public class Defender : MonoBehaviour {
 
-    private Animator anim;   
+    public int starValue;
 
+    private Animator anim;   
     private GameObject currentAttacker;
 
     // Use this for initialization
@@ -18,6 +19,10 @@ public class Defender : MonoBehaviour {
         if (!currentAttacker && anim.GetBool("isAttacked") == true) {
             NoLongerAttacked();
         }
+    }
+
+    public int GetStarValue() {
+        return starValue;
     }
 
     public void OnTriggerEnter2D(Collider2D collision) {
