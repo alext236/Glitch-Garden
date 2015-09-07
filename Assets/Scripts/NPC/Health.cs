@@ -21,6 +21,6 @@ public class Health : MonoBehaviour {
 
     public void DestroyObject() {
         Destroy(gameObject);
-
+        //Can count how many attackers/defenders have been destroyed
     }
 }

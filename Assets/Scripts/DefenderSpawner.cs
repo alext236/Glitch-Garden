@@ -18,34 +18,24 @@ public class DefenderSpawner : MonoBehaviour {
             defenderParent = new GameObject("Defender");
         }
     }
-
+    //This class uses a box collider
     public void OnMouseDown() {
         SpawnSelectedDefender();
     }
 
     private void SpawnSelectedDefender() {
-        //Can't spawn if there is not enough stars left
-        if (IsThereEnoughStarsToSpawn() == false) {
+        GameObject selectedDefender = Button.selectedDefender;        
+
+        //Deduct spawned defender's star value from collection if there's enough 
+        int starsNeeded = selectedDefender.GetComponent<Defender>().GetStarValue();
+        if (starController.DeductFromStarCollection(starsNeeded) == StarController.Status.FAILURE) {
             return;
         }
+        //Spawn the selected defender after deducting required cost
         Vector3 spawnPos = GetSpawnPosOnMouseClick();
+        GameObject newDefender = Instantiate(selectedDefender, spawnPos, Quaternion.identity) as GameObject;
+        newDefender.transform.SetParent(defenderParent.transform);                     
 
-        GameObject newDefender = Instantiate(Button.selectedDefender, spawnPos, Quaternion.identity) as GameObject;
-        newDefender.transform.SetParent(defenderParent.transform);
-
-        //Deduct spawned defender's star value from collection
-        int starDeducted = newDefender.GetComponent<Defender>().GetStarValue();
-        starController.DecreaseFromStarCollection(starDeducted);
-
-    }
-
-    private bool IsThereEnoughStarsToSpawn() {
-        int starsLeft = StarController.GetStarCollection() - Button.selectedDefender.GetComponent<Defender>().GetStarValue();
-        if (starsLeft < 0) {
-            return false;            
-        }
-
-        return true;
     }
 
     private Vector3 GetSpawnPosOnMouseClick() {
