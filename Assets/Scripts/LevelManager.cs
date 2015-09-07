@@ -29,4 +29,12 @@ public class LevelManager : MonoBehaviour {
     public void LoadNextLevel() {
         Application.LoadLevel(Application.loadedLevel + 1);
     }
+
+    public void LoadLoseScreen() {
+        LoadLevel("03b Lose");
+    }
+
+    public void LoadWinScreen() {
+        LoadLevel("03a Win");
+    }
 }
