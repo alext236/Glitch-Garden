@@ -29,8 +29,7 @@ public class GameTimer : MonoBehaviour {
         DecreaseTime();
 
         if (timeRemainingInSeconds == 0 && win == false) {
-            DisplayWinningMessage();
-            win = true;
+            HandleWinCondition();            
             Invoke("LoadNextLevel", winningSound.length);
         }
     }
@@ -43,14 +42,26 @@ public class GameTimer : MonoBehaviour {
         timeSlider.value += 1 / timeAvailableInSeconds * Time.deltaTime;
     }
 
-    private void DisplayWinningMessage() {
+    private void HandleWinCondition() {
+        //remove all attackers
+        DestroyAllTaggedObjects();
+
         winningText.enabled = true;
+        win = true;
+
         //Play sound
         AudioSource.PlayClipAtPoint(winningSound, transform.position, PlayerPrefsManager.GetMasterVolume());
     }
 
     private void LoadNextLevel() {
         levelManager.LoadNextLevel();
+    }
+
+    void DestroyAllTaggedObjects() {
+        GameObject[] objectsToDestroy = GameObject.FindGameObjectsWithTag("destroyOnWin");
+        foreach (GameObject obj in objectsToDestroy) {
+            Destroy(obj);
+        }
     }
     
 }
