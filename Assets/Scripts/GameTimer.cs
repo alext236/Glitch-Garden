@@ -45,6 +45,7 @@ public class GameTimer : MonoBehaviour {
 
     private void DisplayWinningMessage() {
         winningText.enabled = true;
+        //Play sound
         AudioSource.PlayClipAtPoint(winningSound, transform.position, PlayerPrefsManager.GetMasterVolume());
     }
 

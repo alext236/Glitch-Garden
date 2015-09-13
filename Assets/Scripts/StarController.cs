@@ -8,7 +8,7 @@ public class StarController : MonoBehaviour {
     public Text scoreText;
     public enum Status { SUCCESS, FAILURE };
 
-    private static int starsInCollection = 100;    
+    private int starsInCollection = 100;    
 
 	// Use this for initialization
 	void Start () {        
@@ -19,7 +19,7 @@ public class StarController : MonoBehaviour {
         scoreText.text = GetStarCollection().ToString();
     }
 
-    public static int GetStarCollection() {
+    public int GetStarCollection() {
         return starsInCollection;
     }
 
